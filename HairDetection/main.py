@@ -40,7 +40,7 @@ def train(cfg: Dict, resume: str) -> None:
 
     transforms = get_instance(module_aug, 'augmentation', cfg)
     data_loader = CustomDataLoader(transforms,
-                                   "../kaggle/input/sampled-image-40/sampled_images/",
+                                   "../targetdir/sampled_images/",
                                    20,
                                    1,
                                    .1,
