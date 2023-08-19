@@ -41,7 +41,7 @@ def train(cfg: Dict, resume: str) -> None:
     transforms = get_instance(module_aug, 'augmentation', cfg)
     data_loader = CustomDataLoader(transforms,
                                    "data/sampled_images_dataset_40/content/sampled_images/",
-                                   40,
+                                   20,
                                    1,
                                    .1,
                                    2,
