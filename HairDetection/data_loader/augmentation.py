@@ -20,7 +20,6 @@ class Transforms(AugmentationFactoryBase):
 
     def __init__(self):
         self.train_transforms = T.Compose([
-            # T.Grayscale(num_output_channels=3),
             T.RandomHorizontalFlip(p=0.1),
             T.RandomVerticalFlip(p=0.1),
             T.RandomApply([T.RandomRotation(degrees=90)], p=0.1),
@@ -31,7 +30,6 @@ class Transforms(AugmentationFactoryBase):
             T.Normalize(self.MEANS, self.STDS)
         ])
         self.test_transforms = T.Compose([
-            # T.Grayscale(num_output_channels=3),
             T.ToTensor(),
             T.Normalize(self.MEANS, self.STDS)
         ])
