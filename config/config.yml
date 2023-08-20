@@ -16,7 +16,7 @@ data_loader:
   type: DataLoader
   args:
     batch_size: 20
-    data_dir: "/kaggle/input/sampled-images-dataset/"
+    data_dir: "data/sampled_images_dataset_40/content/sampled_images/"
     nworkers: 2
     shuffle: true
     validation_split: 0.1
@@ -32,6 +32,10 @@ lr_scheduler:
 metrics:
 - top_1_acc
 - top_3_acc
+- precision_at_k
+- recall_at_k
+- f1_score
+- roc_auc
 
 optimizer:
   type: Adam
@@ -42,6 +46,7 @@ optimizer:
 training:
   early_stop: 10
   epochs: 100
-  monitor: min val_loss
+  monitor: max top_1_acc  # Monitor the metric for best model selection
   save_period: 1
   tensorboard: true
+  checkpoint_dir: saved/checkpoints/  # Add a directory to save checkpoints
