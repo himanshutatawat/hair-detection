@@ -32,10 +32,7 @@ lr_scheduler:
 metrics:
 - top_1_acc
 - top_3_acc
-- precision_at_k
-- recall_at_k
-- f1_score
-- roc_auc
+
 
 optimizer:
   type: Adam
