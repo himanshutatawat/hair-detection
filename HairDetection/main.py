@@ -45,7 +45,7 @@ def train(cfg: Dict, resume: str) -> None:
 
     transforms = get_instance(module_aug, 'augmentation', cfg)
     # Define the absolute path to the dataset directory
-    dataset_path = os.path.abspath('/kaggle/input/sampled-images-dataset/')
+    dataset_path = os.path.abspath('/kaggle/input/sampled-images-40/sampled_images/')
 
     data_loader = CustomDataLoader(transforms,
                                    dataset_path,
