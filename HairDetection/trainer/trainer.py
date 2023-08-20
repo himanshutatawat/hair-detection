@@ -22,6 +22,8 @@ class Trainer(TrainerBase):
         self.do_validation = self.valid_data_loader is not None
         self.lr_scheduler = lr_scheduler
         self.log_step = int(np.sqrt(data_loader.batch_size)) * 8
+        self.best_metric_value = float('-inf')
+        self.best_model_path = None
 
     def _train_epoch(self, epoch: int) -> dict:
         """
