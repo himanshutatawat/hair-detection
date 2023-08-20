@@ -20,6 +20,10 @@ from HairDetection.data_loader.data_loaders import CustomDataLoader
 import os 
 
 
+# Import for visualization
+import matplotlib.pyplot as plt
+
+
 
 
 
@@ -41,7 +45,7 @@ def train(cfg: Dict, resume: str) -> None:
 
     transforms = get_instance(module_aug, 'augmentation', cfg)
     # Define the absolute path to the dataset directory
-    dataset_path = os.path.abspath('/kaggle/input/sampled-image-40/sampled_images/')
+    dataset_path = os.path.abspath('/kaggle/input/sampled-images-dataset/')
 
     data_loader = CustomDataLoader(transforms,
                                    dataset_path,
