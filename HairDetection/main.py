@@ -17,6 +17,7 @@ import HairDetection.model.model as module_arch
 from HairDetection.trainer import Trainer
 from HairDetection.utils import setup_logger
 from HairDetection.data_loader.data_loaders import CustomDataLoader
+import os 
 
 
 
@@ -39,8 +40,10 @@ def train(cfg: Dict, resume: str) -> None:
     model, optimizer, start_epoch = resume_checkpoint(resume, model, optimizer, cfg)
 
     transforms = get_instance(module_aug, 'augmentation', cfg)
+    # Define the absolute path to the dataset directory
+    dataset_path = os.path.abspath('../input/sampled-image-40/sampled_images/')
     data_loader = CustomDataLoader(transforms,
-                                   "../targetdir/sampled_images/",
+                                   dataset_path,
                                    20,
                                    1,
                                    .1,
