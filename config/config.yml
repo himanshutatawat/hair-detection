@@ -6,7 +6,7 @@ target_devices: [0]
 arch:
   type: ResNet50Model
   args:
-    num_classes: 10
+    num_classes: 4
 
 augmentation:
   type: Transforms
@@ -15,8 +15,8 @@ augmentation:
 data_loader:
   type: DataLoader
   args:
-    batch_size: 128
-    data_dir: "data/sampled_images_dataset_40/content/sampled_images/"
+    batch_size: 20
+    data_dir: "/kaggle/input/sampled-images-dataset/"
     nworkers: 2
     shuffle: true
     validation_split: 0.1
