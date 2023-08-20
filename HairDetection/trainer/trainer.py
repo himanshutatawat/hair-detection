@@ -128,10 +128,19 @@ class Trainer(TrainerBase):
         del output
         torch.cuda.empty_cache()
 
-        self.writer.set_step(epoch, 'valid')
-        self.writer.add_scalar('loss', loss_mtr.avg)
-        for mtr in metric_mtrs:
-            self.writer.add_scalar(mtr.name, mtr.avg)
+         # Update best model checkpoint if a better validation metric is achieved
+        if metric_mtrs[0].avg > self.best_metric_value:  # Change index if needed
+            self.best_metric_value = metric_mtrs[0].avg
+            if self.best_model_path is not None:
+                # Delete the previous best model checkpoint
+                os.remove(self.best_model_path)
+            self.best_model_path = os.path.join(self.config['training']['checkpoint_dir'], f'best_model_epoch{epoch}.pth')
+            torch.save({
+                'epoch': epoch + 1,
+                'state_dict': self.model.state_dict(),
+                'optimizer': self.optimizer.state_dict(),
+                'config': self.config
+            }, self.best_model_path)
 
         return {
             'val_loss': loss_mtr.avg,
